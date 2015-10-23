@@ -9,18 +9,16 @@
 <title>2048</title>
 
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<script src="js/jquery.min.js"></script>
 <script src="js/2048.js"></script>
 </head>
 
 <body>
 	<header>
-		<hgroup>
-			<h1>2048</h1>
-			<h2>Score: <span id="score">0</span></h2>
-		</hgroup>
+		<h1>2048</h1>
+		<h2>Score: <span id="score">0</span></h2>
+		<h6>Tips: Tiles with same value can be merged into one, try to move up/down/left/right to get 2048!</h6>
 	</header>
-	<span><a id="startBtn" onclick="gameStart()">Restart</a></span>
+	<div class="wraper"><a id="startBtn" onclick="gameStart()">Restart</a></div>
 	<div id="div2048"></div>
 	<footer>
 		<p>&copy; 2015 NJU. All rights reserved.</p>

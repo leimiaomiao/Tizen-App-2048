@@ -6,6 +6,8 @@ function game2048(container) {
 
 game2048.prototype = {
 	init : function() {
+		this.score = 0;
+		
 		for (var i = 0, len = this.tiles.length; i < len; i++) {
 			var tile = this.newTile(0);
 			tile.setAttribute('index', i);
@@ -18,7 +20,7 @@ game2048.prototype = {
 
 	newTile : function(val) {
 		var tile = document.createElement('div');
-		this.setTileVal(tile, val)
+		this.setTileVal(tile, val);
 		return tile;
 	},
 
@@ -27,7 +29,7 @@ game2048.prototype = {
 		tile.setAttribute('val', val);
 		tile.innerHTML = val > 0 ? val : '';
 	},
-
+	
 	randomTile : function() {
 		var zeroTiles = [];
 		for (var i = 0, len = this.tiles.length; i < len; i++) {
@@ -51,6 +53,7 @@ game2048.prototype = {
 					j -= 4;
 				}
 			}
+			
 			break;
 		// 向下滑动
 		case 'DOWN':
@@ -85,6 +88,7 @@ game2048.prototype = {
 		default:
 			return;
 		}
+		document.getElementById("score").innerHTML = ""+this.score+"";
 		this.randomTile();
 	},
 
@@ -99,7 +103,6 @@ game2048.prototype = {
 				this.setTileVal(prevTile, prevVal * 2);
 				this.setTileVal(currTile, 0);
 				this.score += prevVal * 2;
-				$("#score").html(this.score);
 			}
 		}
 	},
@@ -137,23 +140,33 @@ game2048.prototype = {
 		}
 		this.tiles = new Array(16);
 		this.score = 0;
-		document.getElementById("score").innerHTML(0);
 	}
 }
-var game, startBtn;
+var game, startBtn, score;
 
 window.onload = gameStart;
+
+window.addEventListener('tizenhwkey', function(e) {
+	if(e.keyName == "back") {
+		try {
+			tizen.application.getCurrentApplication().exit();
+		} catch (error) {
+			console.error("getCurrentApplication(): " + error.message);
+		}
+	}
+},false);
 
 function gameStart(){
 	var container = document.getElementById('div2048');
 	startBtn = document.getElementById('startBtn');
+	score = document.getElementById("score").innerHTML="0";
 	game = game || new game2048(container);
-	
 	while (container.hasChildNodes()) {
 		container.removeChild(container.lastChild);
 	}
 	
 	game.init();
+	
 }
 
 var startPos, endPos, direction, isScrolling;
@@ -193,16 +206,8 @@ window.addEventListener("touchend", function(event) {
 		return;
 	}
 	game.move(direction);
+	score.innerHTML = game.score;
 	direction = null;
 }, false);
 
-window.addEventListener('tizenhwkey', function onTizenHwKey(e) {
-    if (e.keyName === 'back') {
-        try {
-            tizen.application.getCurrentApplication().exit();
-        } catch (err) {
-            console.log('Error: ', err);
-        }
-    }
-});
 

@@ -9,29 +9,49 @@ body {
 header h1 {
     font-size: 36px;
     margin: 0px;
+    color:#f2b179;
 }
 
 header h2 {
     font-size: 24px;
     text-align:center;
-    margin: 20px;
+    margin: 0px;
     color: #888;
     font-style: italic;
 }
 
+header h6{
+	color: #888;
+	margin: 0px;
+}
+
+.wraper{
+	background-color:grey;
+	margin-top:10px;
+	margin-bottom:10px;
+	width:50%;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+
 a#startBtn{
+	color:white;
 	text-align:center;
 	display:block;
 }
 
-a#startBtn:hover{
-	color:#f2b179;
+.wraper:hover{
+	background-color:#f2b179;
 }
 
 #div2048{
-	width: 300px;
-	height: 300px;
-	margin-left:10px;
+	width: 297px;
+	height: 297px;
+	margin-left:auto;
+	margin-right:auto;
 	background-color: #b8af9e;
 }
 
