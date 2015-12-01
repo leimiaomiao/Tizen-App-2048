@@ -171,6 +171,7 @@ function gameStart(){
 
 var startPos, endPos, direction, isScrolling;
 window.addEventListener("touchstart", function(event) {
+	event.preventDefault();
 	var touch = event.targetTouches[0];
 	startPos = {
 		x : touch.screenX,

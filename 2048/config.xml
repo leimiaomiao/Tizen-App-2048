@@ -6,4 +6,5 @@
     <icon src="icon.png" height="100" width="100"/>
     <name>2048</name>
     <tizen:profile name="mobile"/>
+    <tizen:setting screen-orientation="portrait" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
 </widget>
